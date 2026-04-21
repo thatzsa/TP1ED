@@ -1,4 +1,4 @@
-#include "ranking.hpp"
+#include "Ranking.hpp"
 
 void quickSort(ParOrdenacao* arr, int inicio, int fim) {
     if (inicio >= fim) return;

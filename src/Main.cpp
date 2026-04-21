@@ -5,15 +5,16 @@
 #include <chrono>
 #include "Acao.hpp"
 #include "Cliente.hpp"
-#include "ranking.hpp"
+#include "Ranking.hpp"
 
 using std::cin;
 using std::cout;
 using std::string;
 using std::getline;
 using std::stringstream;
+using namespace std::chrono;
 
-int main() {
+int main(int argc, char* argv[]) {
     // Otimização de I/O em C++ para ler arquivos grandes mais rapidamente
     //std::ios_base::sync_with_stdio(false);
    // cin.tie(NULL);
@@ -31,6 +32,25 @@ int main() {
 
     int capacidade_clientes = 1000;
     Cliente* vetor_clientes = new Cliente[capacidade_clientes];
+
+    // 0 = Sob Demanda || 1 = Imediata
+    int estrategia = 0; 
+    
+    if (argc > 1) {
+        string arg = argv[1];
+        if (arg == "imediata") {
+            estrategia = 1;
+        }
+    }
+
+    // todas p análise experimental
+    double tempo_total = 0;
+    double tempo_cotacoes = 0;
+    double tempo_consultas = 0;
+    int total_cotacoes = 0;
+    int total_consultas = 0;
+    int reconstrucoes_ranking = 0;
+    int total_clientes_cadastrados = 0;
 
     while (cin >> tipo_linha) {
         
@@ -85,7 +105,11 @@ int main() {
             }
             vetor_clientes[id_cliente].setId(id_cliente);
 
-        } 
+            if (id_cliente >= total_clientes_cadastrados) {
+                total_clientes_cadastrados = id_cliente + 1;
+            }
+
+        }
         else if (tipo_linha == 'P') {
             int id_acao;
             double preco;
@@ -94,7 +118,7 @@ int main() {
             // Vai até a ação no vetor de ações e adiciona a cotação
             vetor_acoes[id_acao].adicionarCotacao(preco);
 
-        } 
+        }
         else if (tipo_linha == 'B') {
             int id_cliente, id_acao;
             cin >> id_cliente >> id_acao;
@@ -207,6 +231,14 @@ int main() {
             delete[] pesos_consulta;
         }
     }
+
+    std::cout << "\nESTATISTICAS," 
+              << estrategia << "," 
+              << total_acoes_cadastradas << "," 
+              << total_clientes_cadastrados << "," 
+              << tempo_cotacoes << "," 
+              << tempo_consultas << "," 
+              << reconstrucoes_ranking << "\n";
 
     delete[] vetor_acoes;
     delete[] vetor_clientes;
