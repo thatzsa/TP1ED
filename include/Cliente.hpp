@@ -1,5 +1,4 @@
-#ifndef CLIENTE_HPP
-#define CLIENTE_HPP
+#pragma once
 
 class Cliente {
 private:
@@ -25,5 +24,3 @@ public:
 
     void removerAcao(int id_acao);//operação de venda
 };
-
-#endif

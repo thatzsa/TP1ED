@@ -32,7 +32,7 @@ int main() {
             stringstream ss(resto_da_linha);
             string metrica;
             
-            // Extrai cada métrica da linha e guarda no array
+            // extrai cada métrica e guarda no array
             while (ss >> metrica) {
                 metricas_globais[num_metricas_globais] = metrica;
                 num_metricas_globais++;
@@ -51,20 +51,18 @@ int main() {
             int id_acao;
             double preco;
             cin >> id_acao >> preco;
-            
-            // IMPORTANTE: Se você estiver usando a "Estratégia Imediata",
-            // é aqui que você deve atualizar os rankings globais!
+
         } 
         else if (tipo_linha == 'B') {
             int id_cliente, id_acao;
             cin >> id_cliente >> id_acao;
-            // A ação passa a pertencer à carteira do cliente
+            // add a ação na carteira do cliente
         } 
         else if (tipo_linha == 'V') {
             int id_cliente, id_acao;
             cin >> id_cliente >> id_acao;
-            // A ação é removida da carteira do cliente
-        } 
+            // remove a ação da carteira do cliente} 
+        }
         else if (tipo_linha == 'Q') {
             int id_consulta, id_cliente, n, m;
             cin >> id_consulta >> id_cliente >> n >> m; 
@@ -75,12 +73,7 @@ int main() {
             for (int i = 0; i < m; i++) {
                 cin >> metricas_consulta[i] >> pesos_consulta[i];
             }
-            
-            // LÓGICA DA CONSULTA VEM AQUI:
-            // 1. Se for "Estratégia Sob Demanda", reconstrua os rankings aqui.
-            // 2. Calcule os pontos e pesos 
-            // 3. Imprima as linhas 'R' formatadas com 2 casas decimais
-
+ 
             delete[] metricas_consulta;
             delete[] pesos_consulta;
         }

@@ -1,16 +1,15 @@
-#ifndef ACAO_HPP
-#define ACAO_HPP
+#pragma once
 
 #include <string>
 
-class Acao {
+class Acao{
 private:
     int id;         
     double* cotacoes;
     int capacidade; //tamanho do array de cotações
     int num_cotacoes;
 
-    void redimensionarArray(); // função para redimensionar o array de cotações quando necessário
+    void redimensionarArray(); // redimensionar o array de cotações
 
 public:
     Acao(); // construtor padrão
@@ -28,5 +27,3 @@ public:
     double calcularSTAB(int w) const;
     double calcularCONS(int w) const;
 };
-
-#endif 
