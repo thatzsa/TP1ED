@@ -115,10 +115,19 @@ int main(int argc, char* argv[]) {
             double preco;
             cin >> id_acao >> preco;
 
+            // tempo p analise experimental
+            auto inicio_p = std::chrono::high_resolution_clock::now();
+
             // Vai até a ação no vetor de ações e adiciona a cotação
             vetor_acoes[id_acao].adicionarCotacao(preco);
 
+            auto fim_p = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double, std::milli> duracao = fim_p - inicio_p;
+            tempo_cotacoes += duracao.count();
+            total_cotacoes++;
+
         }
+
         else if (tipo_linha == 'B') {
             int id_cliente, id_acao;
             cin >> id_cliente >> id_acao;
@@ -134,6 +143,10 @@ int main(int argc, char* argv[]) {
             vetor_clientes[id_cliente].removerAcao(id_acao);
         }
         else if (tipo_linha == 'Q') {
+
+            // tempo p/ analise experimental
+            auto inicio_q = std::chrono::high_resolution_clock::now();
+
             int id_consulta, id_cliente, n, m;
             cin >> id_consulta >> id_cliente >> n >> m; 
             
@@ -229,6 +242,10 @@ int main(int argc, char* argv[]) {
             delete[] ranking_temporario;
             delete[] metricas_consulta;
             delete[] pesos_consulta;
+
+            auto fim_q = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double, std::milli> duracao = fim_q - inicio_q;
+            tempo_consultas += duracao.count();
         }
     }
 
@@ -239,6 +256,7 @@ int main(int argc, char* argv[]) {
               << tempo_cotacoes << "," 
               << tempo_consultas << "," 
               << reconstrucoes_ranking << "\n";
+
 
     delete[] vetor_acoes;
     delete[] vetor_clientes;
