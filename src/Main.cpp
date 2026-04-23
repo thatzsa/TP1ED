@@ -15,10 +15,6 @@ using std::stringstream;
 using namespace std::chrono;
 
 int main(int argc, char* argv[]) {
-    // Otimização de I/O em C++ para ler arquivos grandes mais rapidamente
-    //std::ios_base::sync_with_stdio(false);
-   // cin.tie(NULL);
-   // talvez eu use 
 
     char tipo_linha;
     int w = 0;
@@ -31,19 +27,10 @@ int main(int argc, char* argv[]) {
     int total_acoes_cadastradas = 0;
 
     int capacidade_clientes = 1000;
-    Cliente* vetor_clientes = new Cliente[capacidade_clientes];
-
-    // 0 = Sob Demanda || 1 = Imediata
-    int estrategia = 0; 
-    
-    if (argc > 1) {
-        string arg = argv[1];
-        if (arg == "imediata") {
-            estrategia = 1;
-        }
-    }
+    Cliente* vetor_clientes = new Cliente[capacidade_clientes];     
 
     // todas p análise experimental
+    /*
     double tempo_total = 0;
     double tempo_cotacoes = 0;
     double tempo_consultas = 0;
@@ -51,6 +38,8 @@ int main(int argc, char* argv[]) {
     int total_consultas = 0;
     int reconstrucoes_ranking = 0;
     int total_clientes_cadastrados = 0;
+
+    */
 
     while (cin >> tipo_linha) {
         
@@ -248,7 +237,7 @@ int main(int argc, char* argv[]) {
             tempo_consultas += duracao.count();
         }
     }
-
+/*
     std::cout << "\nESTATISTICAS," 
               << estrategia << "," 
               << total_acoes_cadastradas << "," 
@@ -256,7 +245,7 @@ int main(int argc, char* argv[]) {
               << tempo_cotacoes << "," 
               << tempo_consultas << "," 
               << reconstrucoes_ranking << "\n";
-
+*/
 
     delete[] vetor_acoes;
     delete[] vetor_clientes;

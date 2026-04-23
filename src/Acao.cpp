@@ -82,7 +82,7 @@ double Acao::calcularAVGRET(int w) const {
 double Acao::calcularSTAB(int w) const {
     if (num_cotacoes < w) return 0.0;
 
-    // Reaproveitamos o método AVGRET, pois ele é exatamente o r_barra da fórmula
+    // reaproveitar método AVGRET pra STAB pq STAB usa AVGRET no cálculo da volatilidade
     double r_barra = calcularAVGRET(w); 
     double soma_variancia = 0.0;
     int base = num_cotacoes - w;
